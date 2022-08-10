@@ -1,0 +1,40 @@
+<div class="grid">
+    <div class="col-12 xl:col-2 text-center relative my-field-width">
+        <div class="absolute top-50">
+            <p-fileUpload mode="basic" [multiple]="false" name="demo[]" accept="image/*" [maxFileSize]="10000000" (onSelect)="fileChangeEvent($event)" [auto]="true" chooseLabel="Choose image"></p-fileUpload>
+        </div>
+    </div>
+    <div class="col-12 xl:col-10">
+        <div class="text-center">
+            <h5>Crop Image</h5>
+            <image-cropper  
+                [imageFile]="selectedImage"
+                [maintainAspectRatio]="true" 
+                [aspectRatio]="4 / 4"
+                [resizeToWidth]="256" 
+                format="png" 
+                (imageCropped)="imageCropped($event)" 
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()" 
+                (loadImageFailed)="loadImageFailed()">
+            </image-cropper>
+        <p-button label="Crop and add image"[disabled]="cropImageButtonDisabled" (onClick)="cropImage()"></p-button>
+        </div>
+    </div>
+    <div class="col-12">
+        <h5 class="text-center">Chosen images</h5>
+        <div>
+            <div *ngFor="let image of croppedImages">
+                <div class="p-3">
+                    <img [src]="image" alt="Ups... something went worng">
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div class="col-12">
+        <p-button (onClick)="uploadImages()" label="Upload"></p-button>
+
+        <pre>{{uploadProgress$ | async | json}}</pre>
+    </div>
+</div>
+    

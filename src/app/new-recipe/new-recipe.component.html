@@ -1,0 +1,139 @@
+<form class="grid" [formGroup]="newRecipeForm">
+    <div class="field col-12 md:col-6 pt-4">
+        <span class="p-float-label">
+            <input id="input-title" name="title" formControlName="title" pInputText class="my-field-width">
+            <div *ngIf="title?.invalid && title?.touched; then invalidTitle else validTitle"></div>
+            <ng-template #invalidTitle>
+                <label class="color-me-red" for="input-title">Recipe title is mandatory</label>
+            </ng-template>
+            <ng-template  #validTitle>
+                <label for="input-title">Recipe title</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="field col-12 md:col-6 pt-4">
+        <span class="p-float-label">
+            <p-multiSelect [options]="(categories$ | async)!" formControlName="category" [group]="true" defaultLabel="Select a category" scrollHeight="250px" display="chip">
+                <ng-template let-group pTemplate="group">
+                    <div class="flex align-items-center">
+                        <span>{{group.label}}</span>
+                    </div>
+                </ng-template>
+            </p-multiSelect>
+            <div *ngIf="category?.invalid && category?.touched; then invalidCategory else validCategory"></div>
+            <ng-template #invalidCategory>
+                <label class="color-me-red" for="input-category">Select at least one category</label>
+            </ng-template>
+            <ng-template  #validCategory>
+                <label for="input-category">Select a category</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="col-2"></div>
+    <div class="field col-8">
+        <div class="pt-4">
+            <span class="p-float-label">
+                <textarea id="input-description" formControlName="description" [required]="true" class="my-field-width" rows="3" cols="30" pInputTextarea [ngClass]="{'p-filled': (description?.value !== '' )}"></textarea>
+                <div *ngIf="description?.invalid && description?.touched; then invalidDescription else validDescriotion"></div>
+                <ng-template #invalidDescription>
+                    <label class="color-me-red" for="input-description">Write a small headline. From 10 to 1000 characters long</label>
+                </ng-template>
+                <ng-template  #validDescriotion>
+                    <label for="input-description">Headline</label>
+                </ng-template>
+            </span>
+        </div>
+        <div class="pt-4">
+            <span class="p-float-label">
+                <input id="input-note-title" name="note-title" formControlName="noteTitle" pInputText class="my-field-width">
+                <div *ngIf="noteTitle?.invalid && noteTitle?.touched; then invalidNoteTitle else validNoteTitle"></div>
+                <ng-template #invalidNoteTitle>
+                    <label class="color-me-red" for="input-note-title">Article title is mandatory</label>
+                </ng-template>
+                <ng-template  #validNoteTitle>
+                    <label for="input-note-title">Article title</label>
+                </ng-template>
+            </span>
+        </div>
+        <div class="pt-4">
+            <label for="input-note-text" style="display: block;" class="pl-2 pb-1">Article content</label>
+            <p-editor id="input-note-text" formControlName="noteText">\
+                <p-header>
+
+                    <span class="ql-formats">
+                            <select class="ql-header" tabindex="-1">
+                              <option value="1" tabindex="-1">Heading</option>
+                              <option value="2" tabindex="-1">Subheading</option>
+                              <option selected tabindex="-1">Normal</option>
+                            </select>
+                            <select class="ql-font" tabindex="-1">
+                              <option selected tabindex="-1">Sans Serif</option>
+                              <option value="serif" tabindex="-1">Serif</option>
+                              <option value="monospace" tabindex="-1">Monospace</option>
+                            </select>
+                          </span>
+                    <span class="ql-formats">
+                            <button class="ql-bold" aria-label="Bold" tabindex="-1"></button>
+                            <button class="ql-italic" aria-label="Italic" tabindex="-1"></button>
+                            <button class="ql-underline" aria-label="Underline" tabindex="-1"></button>
+                          </span>
+                    <span class="ql-formats">
+                            <select class="ql-color" tabindex="-1"></select>
+                            <select class="ql-background" tabindex="-1"></select>
+                          </span>
+                    <span class="ql-formats">
+                            <button class="ql-list" value="ordered" aria-label="Ordered List" tabindex="-1"></button>
+                            <button class="ql-list" value="bullet" aria-label="Unordered List" tabindex="-1"></button>
+                            <select class="ql-align" tabindex="-1">
+                              <option selected tabindex="-1"></option>
+                              <option value="center" tabindex="-1"></option>
+                              <option value="right" tabindex="-1"></option>
+                              <option value="justify" tabindex="-1"></option>
+                            </select>
+                          </span>
+                    <span class="ql-formats">
+                            <button class="ql-link" aria-label="Insert Link" tabindex="-1"></button>
+                          </span>
+                    <span class="ql-formats">
+                            <button class="ql-clean" aria-label="Remove Styles" tabindex="-1"></button>
+                          </span>
+                  </p-header>
+            </p-editor>
+        </div>
+    </div>
+    <div class="md:col-2 fileld"></div>
+
+    <div class="col-12 xl:col-4 field pt-4">
+        <span class="p-float-label">
+            <input id="input-source" name="title" formControlName="source" pInputText class="my-field-width">
+            <label for="input-source">Source</label>
+        </span>
+    </div>
+    <div class="col-12 xl:col-4 field pt-4">
+        <span class="p-float-label">
+            <p-inputNumber #input  class="my-field-width" formControlName="prepTime" [showButtons]="true" inputId="input-prepTime" [step]="5" [min]="0" [max]="180">
+            </p-inputNumber>
+            <div *ngIf="prepTime?.invalid && prepTime?.touched; then prepTimeInvalid else prepTimeValid"></div>
+            <ng-template #prepTimeValid>
+                <label for="input-prepTime">Preperation time</label>
+            </ng-template>
+            <ng-template #prepTimeInvalid>
+                <label class="color-me-red" for="input-prepTime">Preperation time</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="col-12 xl:col-4 field pt-4">
+        <span class="p-float-label">
+            <p-inputNumber #input  class="my-field-width" formControlName="servings" [showButtons]="true" inputId="input-servings" [step]="5" [min]="0" [max]="180">
+            </p-inputNumber>
+            <div *ngIf="servings?.invalid && servings?.touched; then servingsInvalid else servingsValid"></div>
+            <ng-template #servingsValid>
+                <label for="input-servings">Number of servings</label>
+            </ng-template>
+            <ng-template #servingsInvalid>
+                <label class="color-me-red" for="input-servings">Number of servings</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="col-12"><app-recipe-image-upload></app-recipe-image-upload></div>
+</form>

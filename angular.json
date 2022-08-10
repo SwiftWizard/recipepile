@@ -23,9 +23,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/quill/dist/quill.snow.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/quill/dist/quill.js",
+              "src/assets/azurestoragejs-3.0.100/bundle/azure-storage.blob.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -58,7 +67,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -97,5 +106,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "cb9f9431-0021-40c2-9af5-de88176def96"
   }
 }

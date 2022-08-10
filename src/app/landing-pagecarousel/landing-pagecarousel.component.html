@@ -1,0 +1,18 @@
+<p-carousel [value]="((topRecipesWithMessages | async)?.data ?? [{}])" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+    <ng-template pTemplate="header">
+        <h3 class="pl-6">Top recipes</h3>
+    </ng-template>
+    <ng-template let-recipe pTemplate="item">
+        <div>
+            <div class="recipe-item-content">
+                <div class="p-mb-3">
+                </div>
+                <div>
+                    <h4 class="p-mb-1">{{recipe.title}}</h4>
+                    <h4 class="p-mb-1">Done in {{recipe.timeNeeded}} minutes</h4>
+                    <h6 class="p-mt-0 p-mb-3">{{recipe.description}}</h6>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>

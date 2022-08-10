@@ -1,0 +1,30 @@
+<h3>Welcome</h3>
+<br>
+<form class="card"(keyup.enter)="attemptLogin()">
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-6">
+            <span class="p-float-label">
+                <input id="input-email" name="email" [(ngModel)]="authReq.username" pInputText class="my-login-field-width">
+                <label for="input-email">Email</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-6">
+            <span class="p-float-label">
+                <input type="password" name="password" [(ngModel)]="authReq.password" pPassword class="my-login-field-width" [feedback]="false" id="input-password">
+                <label for="input-password">Password</label>
+            </span>
+        </div>
+    </div>
+    <div class="card">
+        <div class="grid flex flex-wrap align-items-center justify-content-center card-container">
+            <div class="relative w-16rem h-4rem border-round">
+                <div class="col-12 md:col-6 absolute left-0 flex align-items-center justify-content-center">
+                    <button pButton type="button" label="Cancel" icon="pi pi-times" class="p-button-danger" routerLink="/"></button>
+                </div>
+                <div class="col-12 md:col-6 absolute right-0 flex align-items-center justify-content-center">
+                    <button pButton type="button" label="Login" icon="pi pi-check" class="p-button-success" (click)="attemptLogin()"></button>
+                </div>
+            </div>
+        </div>
+    </div>  
+</form>
