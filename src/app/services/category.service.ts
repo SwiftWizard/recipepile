@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService, SelectItemGroup, SelectItem } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -15,12 +16,14 @@ export class CategoryService {
 
   private categoriesSource: Subject<SelectItemGroup[]> = new Subject();
 
+  private apiUrl = environment.backend.baseURL;
+
   private categoriesUrl: string = "/api/public/category/all";
 
   constructor(private httpClient: HttpClient, private messageService: MessageService) { }
 
   getCategories(): Observable<DataWithMessages<Category[], string[]>> {
-    return this.httpClient.get(this.categoriesUrl);
+    return this.httpClient.get("${this.apiUrl}${this.categoriesUrl}");
   }
 
   setCategories(categories: SelectItemGroup[]){

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { catchError, observable, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { DataWithMessages } from '../model/data-with-messages';
 import { RecipeSlim } from '../model/recipe-slim.model';
 import { RecipeThick } from '../model/recipe-thick.model';
@@ -12,6 +13,8 @@ import { RecipeThick } from '../model/recipe-thick.model';
 })
 export class RecipeService {
 
+  private apiUrl = environment.backend.baseURL;
+
   private topRecipesUrl = "/api/public/recipes/top";
   private newRecipeUrl = "/api/manage/recipes/new";
 
@@ -19,11 +22,11 @@ export class RecipeService {
   }
 
   getTopRecipes(): Observable<DataWithMessages<RecipeSlim[], string[]>>{
-    return this.http.get<DataWithMessages<RecipeSlim[], string[]>>(this.topRecipesUrl);
+    return this.http.get<DataWithMessages<RecipeSlim[], string[]>>("${this.apiUrl}${this.topRecipesUrl}");
   }
 
   newRecipe(recipe: RecipeThick){
-    let observableData = this.http.post<DataWithMessages<RecipeThick, string[]>>(this.newRecipeUrl, recipe);
+    let observableData = this.http.post<DataWithMessages<RecipeThick, string[]>>("${this.apiUrl}${this.newRecipeUrl}", recipe);
     
     observableData.subscribe({
       next: dataWmeesages => this.handleNewRecipeSuccess(dataWmeesages),

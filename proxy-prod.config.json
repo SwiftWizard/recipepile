@@ -1,7 +1,7 @@
 {
     "/api":{
         "target": "https://recipepile.azurewebsites.net",
-        "pathRewrite": { "^/client-api": "" },
+        "pathRewrite": { "^/api": "" },
         "secure": "true",
         "changeOrigin": true,
         "logLevel": "debug"
