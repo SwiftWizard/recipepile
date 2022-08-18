@@ -78,11 +78,10 @@
           "configurations": {
             "production": {
               "browserTarget": "recipepile:build:production",
-              "proxyConfig": "proxy-prod.conf.json"
+              "proxyConfig": "./proxy-prod.conf.json"
             },
             "development": {
-              "browserTarget": "recipepile:build:development",
-              "proxyConfig": "proxy-local.conf.json"
+              "browserTarget": "recipepile:build:development"
             }
           },
           "defaultConfiguration": "development"
