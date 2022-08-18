@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthenticationRequest } from '../model/authentication-request';
 import { DataWithMessages } from '../model/data-with-messages';
 import { UserPost } from '../model/user-post';
@@ -17,7 +18,7 @@ export class AuthService {
   private user?: UserSlim | null = null;
   private userSource: Subject<UserSlim | null> = new Subject();
 
-  
+  private apiUrl = environment.backend.baseURL;
 
   private loginUrl: string = "api/auth/login";
   private registerUrl: string = "api/auth/register";
@@ -38,7 +39,7 @@ export class AuthService {
   }
 
   register(newUser: UserPost){
-    let observableData = this.httpClient.post<DataWithMessages<UserSlim, string[]>>(this.registerUrl, newUser);
+    let observableData = this.httpClient.post<DataWithMessages<UserSlim, string[]>>("${this.apiUrl}${this.registerUrl}", newUser);
 
     observableData.subscribe({
       next: data => {this.handleSuccessfullRegistration(data)},
@@ -67,7 +68,7 @@ export class AuthService {
   }
   
   login(authenticationRequest: AuthenticationRequest){
-    let observableData =  this.httpClient.post<DataWithMessages<UserSlim, string[]>>(this.loginUrl, authenticationRequest);
+    let observableData =  this.httpClient.post<DataWithMessages<UserSlim, string[]>>("${this.apiUrl}${this.loginUrl}", authenticationRequest);
     
     observableData.subscribe({
       next: data => {
