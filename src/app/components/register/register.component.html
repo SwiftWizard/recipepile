@@ -96,14 +96,14 @@
 
     <div class="col-12 flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center p-1">
-            <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" [ngModelOptions]="{standalone: true}" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+            <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" data-size="compact" [(ngModel)]="token" [ngModelOptions]="{standalone: true}" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
         </div>
     </div>
 
     <div class="col-12 flex justify-content-center flex-wrap card-container">
         <div class="flex align-items-center justify-content-center p-1">
-            <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-danger w-8rem p-2 m-2" routerLink="/"></button>
-            <button pButton pRipple type="button" label="Register" (click)="submitRegistrationForm(form)" [disabled]="enableSubmit(form)" class="p-button-raised p-button-success w-8rem p-2 m-2"></button>
+            <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-danger w-6rem p-2 m-2" routerLink="/"></button>
+            <button pButton pRipple type="button" label="Register" (click)="submitRegistrationForm(form)" [disabled]="enableSubmit(form)" class="p-button-raised p-button-success w-6rem p-2 m-2"></button>
         </div>
     </div>
 </div>
