@@ -17,6 +17,8 @@ export class AuthService {
   private user?: UserSlim | null = null;
   private userSource: Subject<UserSlim | null> = new Subject();
 
+  
+
   private loginUrl: string = "api/auth/login";
   private registerUrl: string = "api/auth/register";
 
