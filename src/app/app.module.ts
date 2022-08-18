@@ -28,6 +28,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CheckboxModule }from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { ChipModule } from 'primeng/chip';
+import {PaginatorModule} from 'primeng/paginator';
 
 import { environment } from 'src/environments/environment';
 
@@ -45,6 +46,8 @@ import { NewRecipeComponent } from './components/new-recipe/new-recipe.component
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RecipeImageUploadComponent } from './components/recipe-image-upload/recipe-image-upload.component';
 import { IngredientManagerComponent } from './ingredient-manager/ingredient-manager.component';
+import { ExploreRecipesComponent } from './components/explore-recipes/explore-recipes.component';
+import { RecipeListItemComponent } from './components/recipe-list-item/recipe-list-item.component';
 
 
 @NgModule({
@@ -58,7 +61,9 @@ import { IngredientManagerComponent } from './ingredient-manager/ingredient-mana
     NewRecipeComponent,
     PageNotFoundComponent,
     RecipeImageUploadComponent,
-    IngredientManagerComponent
+    IngredientManagerComponent,
+    ExploreRecipesComponent,
+    RecipeListItemComponent
   ],
   imports: [
     HttpClientModule,
@@ -86,7 +91,8 @@ import { IngredientManagerComponent } from './ingredient-manager/ingredient-mana
     DialogModule,
     RecaptchaFormsModule,
     RecaptchaModule,
-    ChipModule
+    ChipModule,
+    PaginatorModule
   ],
   providers: [
     AuthService,

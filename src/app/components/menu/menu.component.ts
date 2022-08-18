@@ -44,6 +44,11 @@ export class MenuComponent implements OnInit{
                 icon: PrimeIcons.BOOK,
                 items: [
                     {
+                        label: "Explore recipes",
+                        icon: PrimeIcons.COMPASS,
+                        routerLink: "recipes/explore"
+                    },
+                    {
                       label: "Top rated",
                       icon: PrimeIcons.STAR_FILL
                     },
@@ -63,16 +68,15 @@ export class MenuComponent implements OnInit{
                 label: 'Categories',
                 icon: PrimeIcons.MAP,
                 items: [
-                    {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-                    {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+                    {label: 'Explore categories', icon: PrimeIcons.SEARCH},
+                    {label: 'Recomend new category', icon: PrimeIcons.PLUS_CIRCLE}
                 ]
             },
             {
                 label: 'Users',
                 icon: PrimeIcons.USERS,
                 items: [
-                    {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-                    {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+                    {label: 'Find user', icon: PrimeIcons.SEARCH}
               ]
             },
             {

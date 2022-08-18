@@ -15,14 +15,19 @@ export class RecipeService {
 
   private apiUrl = environment.backend.baseURL;
 
-  private topRecipesUrl = "/api/public/recipes/top";
-  private newRecipeUrl = "/api/manage/recipes/new";
+  private topRecipesUrl: string = "/api/public/recipes/top";
+  private newRecipeUrl: string = "/api/manage/recipes/new";
+  private allRecipesByCategory: string = "/api/public/recipes/all";
 
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
   }
 
   getTopRecipes(): Observable<DataWithMessages<RecipeSlim[], string[]>>{
     return this.http.get<DataWithMessages<RecipeSlim[], string[]>>(`${this.apiUrl}${this.topRecipesUrl}`);
+  }
+
+  getRecipes(categoryId?: number, page?: number, size?: number): Observable<DataWithMessages<any, string[]>> {
+    return this.http.get<DataWithMessages<any, string[]>>(`${this.apiUrl}${this.allRecipesByCategory}`);
   }
 
   newRecipe(recipe: RecipeThick){
