@@ -20,8 +20,8 @@ export class AuthService {
 
   private apiUrl = environment.backend.baseURL;
 
-  private loginUrl: string = "api/auth/login";
-  private registerUrl: string = "api/auth/register";
+  private loginUrl: string = "/api/auth/login";
+  private registerUrl: string = "/api/auth/register";
 
   constructor(private httpClient: HttpClient, private messageService: MessageService, private router: Router){}
 
