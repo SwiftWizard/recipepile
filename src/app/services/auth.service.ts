@@ -86,7 +86,7 @@ export class AuthService {
 
     this.setUser(null);
     localStorage.clear();
-    
+
     this.router.navigateByUrl("/");
   }
 

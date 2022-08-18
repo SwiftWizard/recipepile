@@ -5,5 +5,7 @@ export const environment = {
   storageUri: "https://recipepile.blob.core.windows.net/",
   recaptcha: {
     siteKey: "6LfnqGshAAAAAPafAk_6gqmMVUx6uEE7ZCkvbm6K"
-  }
+  },
+  apiUrl: "https://recipepile.azurewebsites.net"
+
 };
