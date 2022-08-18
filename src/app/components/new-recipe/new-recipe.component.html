@@ -1,3 +1,7 @@
+<p-divider align="center" class="text-blue-600">
+    <b>Recipe info</b>
+</p-divider>
+
 <form class="grid" [formGroup]="newRecipeForm">
     <div class="field col-12 md:col-6 pt-4">
         <span class="p-float-label">
@@ -29,8 +33,7 @@
             </ng-template>
         </span>
     </div>
-    <div class="col-2"></div>
-    <div class="field col-8">
+    <div class="field col-12">
         <div class="pt-4">
             <span class="p-float-label">
                 <textarea id="input-description" formControlName="description" [required]="true" class="my-field-width" rows="3" cols="30" pInputTextarea [ngClass]="{'p-filled': (description?.value !== '' )}"></textarea>
@@ -59,7 +62,6 @@
             <label for="input-note-text" style="display: block;" class="pl-2 pb-1">Article content</label>
             <p-editor id="input-note-text" formControlName="noteText">\
                 <p-header>
-
                     <span class="ql-formats">
                             <select class="ql-header" tabindex="-1">
                               <option value="1" tabindex="-1">Heading</option>
@@ -101,8 +103,6 @@
             </p-editor>
         </div>
     </div>
-    <div class="md:col-2 fileld"></div>
-
     <div class="col-12 xl:col-4 field pt-4">
         <span class="p-float-label">
             <input id="input-source" name="title" formControlName="source" pInputText class="my-field-width">
@@ -124,7 +124,7 @@
     </div>
     <div class="col-12 xl:col-4 field pt-4">
         <span class="p-float-label">
-            <p-inputNumber #input  class="my-field-width" formControlName="servings" [showButtons]="true" inputId="input-servings" [step]="5" [min]="0" [max]="180">
+            <p-inputNumber #input  class="my-field-width" formControlName="servings" [showButtons]="true" inputId="input-servings" [step]="1" [min]="0" [max]="180">
             </p-inputNumber>
             <div *ngIf="servings?.invalid && servings?.touched; then servingsInvalid else servingsValid"></div>
             <ng-template #servingsValid>
@@ -135,5 +135,32 @@
             </ng-template>
         </span>
     </div>
-    <div class="col-12"><app-recipe-image-upload></app-recipe-image-upload></div>
+    
+    <div class="col-12">
+        <p-divider align="center" class="text-blue-600">
+            <b>Images</b>
+        </p-divider>
+        <app-recipe-image-upload [title]="title?.value"></app-recipe-image-upload>
+    </div>
+    <div class="col-12">
+        <p-divider align="center" class="text-blue-600">
+            <b>Ingredients</b>
+        </p-divider>
+    </div>
+    <div class="col-12 flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center">
+            <app-ingredient-manager></app-ingredient-manager>
+        </div>
+    </div>
+    <div class="col-12">
+        <p-divider align="center" class="text-blue-600">
+            <b>Submit recipe</b>
+        </p-divider>
+    </div>
+    <div class="col-12 flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center p-3">
+            <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-danger w-8rem p-2 m-2" routerLink="/"></button>
+            <button pButton pRipple type="button" label="Submit recipe" (click)="submitRecipe()" class="p-button-raised p-button-success w-8rem p-2 m-2"></button>
+        </div>
+    </div>
 </form>

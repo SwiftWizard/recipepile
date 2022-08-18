@@ -1,0 +1,50 @@
+<div class="grid">
+    <div class="col-12 xl:col-2 text-center relative  my-field-width">
+        <h5>Choose image</h5>
+        <br>
+        <div class="flex flex-wrap relative flex align-items-center justify-content-center">
+            <p-fileUpload #fileUpload  mode="basic" [multiple]="false" name="demo[]" accept="image/*" [maxFileSize]="10000000" (onSelect)="fileChangeEvent($event)" [auto]="true" chooseLabel="Choose image"></p-fileUpload>
+        </div>
+
+        <p>Max 5 images</p>
+    </div>
+    <div class="col-12 xl:col-10">
+        <div class="text-center">
+            <h5>Crop Image</h5>
+            <div class="p-3">
+                <image-cropper  
+                    [imageFile]="selectedImage"
+                    [maintainAspectRatio]="true" 
+                    [aspectRatio]="4 / 4"
+                    [resizeToWidth]="1024" 
+                    format="png" 
+                    (imageCropped)="imageCropped($event)" 
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()" 
+                    (loadImageFailed)="loadImageFailed()"> 
+                </image-cropper>
+            </div>
+        <p-button  label="Crop"[disabled]="cropImageButtonDisabled" (onClick)="addImage()"></p-button>
+        </div>
+    </div>
+    <div class="col-12">
+        <div *ngIf="croppedImages.length > 0">
+            <h4 class="text-center">Chosen images</h4>
+        </div>
+        <div class="flex flex-wrap relative flex align-items-center justify-content-center">
+            <div class="grid flex align-items-center justify-content-center">
+                <div *ngFor="let image of croppedImages">
+                    <div class="col-12 lg:col-4 m-2 flex flex-wrap relative">
+                        <div class="surface-300 m-3  flex align-items-center justify-content-center">
+                            <div class="p-3 relative">
+                                <button pButton (click)="removeImage(image)" pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger absolute top-0 left-100"></button>
+                                <p-image [src]="image | async" alt="Ups... something went wrong" width="225" [preview]="true"></p-image>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+    

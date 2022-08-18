@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injectable, Input, OnInit, Output } from '@angular/core';
 import {MenuItem, PrimeIcons} from 'primeng/api';
-import { UserSlim } from '../model/user-slim';
-import { AuthService } from '../services/auth.service';
+import { UserSlim } from '../../model/user-slim';
+import { AuthService } from '../../services/auth.service';
 
 
 @Injectable({

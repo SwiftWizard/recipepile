@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
 import { AuthenticationRequest } from '../model/authentication-request';
 import { DataWithMessages } from '../model/data-with-messages';
+import { UserPost } from '../model/user-post';
 import { UserSlim } from '../model/user-slim';
 
 @Injectable({
@@ -21,12 +22,46 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient, private messageService: MessageService, private router: Router){}
 
+
+  isAuthenticated(): Boolean{
+    return this.user != null;
+  }
+
   public getUser(): Observable<UserSlim | null>{
     return this.userSource.asObservable();
   }
 
   private setUser(user: UserSlim | null){
     this.userSource.next(user);
+  }
+
+  register(newUser: UserPost){
+    let observableData = this.httpClient.post<DataWithMessages<UserSlim, string[]>>(this.registerUrl, newUser);
+
+    observableData.subscribe({
+      next: data => {this.handleSuccessfullRegistration(data)},
+      error: error => {this.handleFaildRegistration(error)}
+    });
+  }
+
+  private handleSuccessfullRegistration(data: DataWithMessages<UserSlim, string[]>){
+    this.messageService.addAll(data.messages!.map(function(msgString :string){
+      return {
+        severity: 'info',
+        summary: msgString
+      }
+    }));
+
+    this.router.navigateByUrl("/");
+  }
+
+  private handleFaildRegistration(data: any){
+    this.messageService.addAll(data.error.messages!.map(function(msgString: string){
+      return {
+        severity: 'error',
+        summary: msgString
+      }
+    }));
   }
   
   login(authenticationRequest: AuthenticationRequest){
@@ -51,6 +86,8 @@ export class AuthService {
 
     this.setUser(null);
     localStorage.clear();
+    
+    this.router.navigateByUrl("/");
   }
 
   private handleSuccessfullLogin(data: DataWithMessages<UserSlim, string[]>){

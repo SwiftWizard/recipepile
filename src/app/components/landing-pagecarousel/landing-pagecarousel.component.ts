@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataWithMessages } from '../model/data-with-messages';
-import { RecipeSlim } from '../model/recipe-slim.model';
-import { RecipeService } from '../services/recipe.service';
+import { DataWithMessages } from '../../model/data-with-messages';
+import { RecipeSlim } from '../../model/recipe-slim.model';
+import { RecipeService } from '../../services/recipe.service';
 
 @Component({
   selector: 'app-landing-pagecarousel',
   templateUrl: './landing-pagecarousel.component.html',
-  styleUrls: ['./landing-pagecarousel.component.css']
+  styleUrls: ['./landing-pagecarousel.component.scss']
 })
 export class LandingPagecarouselComponent implements OnInit {
 

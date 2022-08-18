@@ -5,36 +5,47 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 
+import { RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
+
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
+
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
-import { MainComponent } from './main/main.component' 
 import { PanelModule } from 'primeng/panel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'primeng/carousel';
-import { LandingPagecarouselComponent } from './landing-pagecarousel/landing-pagecarousel.component';
 import { PasswordModule } from 'primeng/password';
-import { LoginComponent } from './login/login.component';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from "primeng/divider";
-import { PasswordInputComponent } from './password-input/password-input.component';
-import { RegisterComponent } from './register/register.component';
-import { AuthService } from './services/auth.service';
-import { RecipeService } from './services/recipe.service';
-import { AppAuthInterceptor } from './services/interceptors/AppAuthInterceptor';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
-import { NewRecipeComponent } from './new-recipe/new-recipe.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { EditorModule } from 'primeng/editor';
 import { ImageModule } from 'primeng/image';
 import { FileUploadModule } from 'primeng/fileupload';
-import { RecipeImageUploadComponent } from './recipe-image-upload/recipe-image-upload.component';
+import { CheckboxModule }from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
+import { ChipModule } from 'primeng/chip';
+
+import { environment } from 'src/environments/environment';
+
+import { AuthService } from './services/auth.service';
+import { RecipeService } from './services/recipe.service';
+import { AppAuthInterceptor } from './services/interceptors/AppAuthInterceptor';
+
+import { AppComponent } from './app.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { MainComponent } from './components/main/main.component';
+import { LandingPagecarouselComponent } from './components/landing-pagecarousel/landing-pagecarousel.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NewRecipeComponent } from './components/new-recipe/new-recipe.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RecipeImageUploadComponent } from './components/recipe-image-upload/recipe-image-upload.component';
+import { IngredientManagerComponent } from './ingredient-manager/ingredient-manager.component';
+
 
 @NgModule({
   declarations: [
@@ -43,11 +54,11 @@ import { RecipeImageUploadComponent } from './recipe-image-upload/recipe-image-u
     MainComponent,
     LandingPagecarouselComponent,
     LoginComponent,
-    PasswordInputComponent,
     RegisterComponent,
     NewRecipeComponent,
     PageNotFoundComponent,
-    RecipeImageUploadComponent
+    RecipeImageUploadComponent,
+    IngredientManagerComponent
   ],
   imports: [
     HttpClientModule,
@@ -70,7 +81,12 @@ import { RecipeImageUploadComponent } from './recipe-image-upload/recipe-image-u
     EditorModule,
     FileUploadModule,
     ImageCropperModule,
-    ImageModule
+    ImageModule,
+    CheckboxModule,
+    DialogModule,
+    RecaptchaFormsModule,
+    RecaptchaModule,
+    ChipModule
   ],
   providers: [
     AuthService,
@@ -81,6 +97,12 @@ import { RecipeImageUploadComponent } from './recipe-image-upload/recipe-image-u
       provide: HTTP_INTERCEPTORS,
       useClass: AppAuthInterceptor,
       multi: true
+    },
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey,
+      } as RecaptchaSettings,
     },
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,16 @@
+.my-field-width{
+    width: 100% !important;
+}
+
+.color-me-red{
+    color:#ff4032;
+}
+
+:host ::ng-deep .p-inputnumber {
+    width: 100%;
+}
+
+:host ::ng-deep .p-multiselect {
+    min-width: 100%;
+    width: 100%;
+}

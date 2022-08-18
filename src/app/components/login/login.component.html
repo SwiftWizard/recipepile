@@ -1,0 +1,41 @@
+<h4>Welcome</h4>
+
+<form #form="ngForm" [formGroup]="loginForm" class="p-2 m-2" (keyup.enter)="attemptLogin()">
+    <div class="p-fluid grid">
+        <div class="field col-12 md:col-6"> 
+            <span class="p-float-label">
+                <input type="text" id="email" pInputText formControlName="email"style="z-index: -10 !important;">
+                <div *ngIf="email?.invalid && email?.touched; then invalidEmail else validEmail"></div>
+                <ng-template #invalidEmail>
+                    <label class="color-me-red" for="name">Email invalid</label>
+                </ng-template>
+                <ng-template #validEmail>
+                    <label for="name">Email*</label>
+                </ng-template>
+            </span>
+        </div>
+        <div class="field col-12 md:col-6"> 
+            <span class="p-float-label">
+                <p-password inputId="password" formControlName="password" [feedback]="false" [toggleMask]="true" styleClass="p-password p-component p-inputwrapper p-input-icon-right"></p-password>
+                <div *ngIf="password?.invalid && password?.dirty; then invalidPassword else validPassword"></div>
+                <ng-template #invalidPassword>
+                    <label for="password" class="color-me-red">Password</label>
+                </ng-template>
+                <ng-template #validPassword>
+                    <label for="password">Password*</label>
+                </ng-template>
+            </span>
+        </div>
+        <div class="col-12 flex justify-content-center flex-wrap card-container">
+            <div class="flex align-items-center justify-content-center p-1">
+                <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-danger w-8rem p-2 mx-3" routerLink="/"></button>
+                <button pButton pRipple type="button" label="Login" (click)="attemptLogin()" [disabled]="enableSubmit(form)" class="p-button-raised p-button-success w-8rem p-2 mx-3"></button>
+            </div>
+        </div>
+        <div class="col-12 flex justify-content-center flex-wrap card-container">
+            <div class="flex align-items-center justify-content-center p-1">
+                <button pButton pRipple type="button" label="Forgot password?" class="p-button-text pl-1" style="min-width: max-content;"></button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,110 @@
+<form #form="ngForm" [formGroup]="registerForm" class="p-2 m-2">
+<div class="p-fluid grid">
+    <div class="field col-12 md:col-6"> 
+        <span class="p-float-label">
+            <input type="text" id="name" pInputText formControlName="name">
+            <div *ngIf="name?.invalid && name?.touched; then invalidName else validName"></div>
+            <ng-template #invalidName>
+                <label class="color-me-red" for="name">Name is mandatory</label>
+            </ng-template>
+            <ng-template #validName>
+                <label for="name">Name*</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="field col-12 md:col-6"> 
+        <span class="p-float-label">
+            <input type="text" id="surname" pInputText formControlName="surname"> 
+            <label for="surname">Surname</label>
+        </span>
+    </div>
+    <div class="field col-12 md:col-6"> 
+        <span class="p-float-label">
+            <input type="text" id="nick" pInputText formControlName="nick"> 
+            <div *ngIf="nick?.invalid && nick?.touched; then invalidNick else validNick"></div>
+            <ng-template #invalidNick>
+                <label class="color-me-red" for="name">Username is mandatory</label>
+            </ng-template>
+            <ng-template #validNick>
+                <label for="name">Username*</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="field col-12 md:col-6"> 
+        <span class="p-float-label">
+            <input type="text" id="email" pInputText formControlName="email"> 
+            <div *ngIf="email?.invalid && email?.touched; then invalidEmail else validEmail"></div>
+            <ng-template #invalidEmail>
+                <label class="color-me-red" for="email">Invalid email</label>
+            </ng-template>
+            <ng-template #validEmail>
+                <label for="email">Email*</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="field col-12 md:col-6"> 
+        <span class="p-float-label">
+            <p-password inputId="password" formControlName="password" [toggleMask]="true" styleClass="p-password p-component p-inputwrapper p-input-icon-right"></p-password>
+            <div *ngIf="password?.invalid && password?.dirty; then invalidPassword else validPassword"></div>
+            <ng-template #invalidPassword>
+                <label for="password" class="color-me-red">Password is mandatory, min 8 chars</label>
+            </ng-template>
+            <ng-template #validPassword>
+                <label for="password">Password*</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="field col-12 md:col-6"> 
+        <span class="p-float-label">
+            <p-password inputId="confirmPassword" formControlName="confirmPassword" [toggleMask]="true" styleClass="p-password p-component p-inputwrapper p-input-icon-right"></p-password>
+            <div *ngIf="confirmPassword?.invalid && confirmPassword?.dirty; then invalidRePassword else validRePassword"></div>
+            <ng-template #invalidRePassword>
+                <label for="password">Passwords do not match</label>
+            </ng-template>
+            <ng-template #validRePassword>
+                <label for="confirmPassword">Confirm password*</label>
+            </ng-template>
+        </span>
+    </div>
+    <div class="col-12">
+        <div class="col-12 flex justify-content-center flex-wrap card-container">
+            <div class="flex align-items-center justify-content-center p-1">
+                <div class="field-checkbox">
+                    <p-checkbox (onChange)="toggleThermsAgreed()" [binary]="true" inputId="thermsAgreed"></p-checkbox>
+                    <label for="thermsAgreed" style="display: flex; justify-content: center;">
+                        <div *ngIf="thermsOfUseAgreed" style="min-width: max-content;" class="text-green-300 py-3 pr-1 border-round">I agree </div>
+                        <div *ngIf="!thermsOfUseAgreed" style="min-width: max-content;" class="text-red-300 py-3 pr-1 border-round">I don`t agree </div>
+                        <div class="py-3" style="min-width: max-content;">to the</div>
+                        <button (click)="showMaximizableDialog()" pButton pRipple type="button" label="Therms of Use" class="p-button-text pl-1"></button>
+                        <p-dialog header="Godfather I" [(visible)]="displayMaxTherms" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
+                            [draggable]="false" [resizable]="false">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                            <ng-template pTemplate="footer">
+                                <p-button icon="pi pi-check" (click)="displayMaxTherms=false" label="Ok" styleClass="p-button-text"></p-button>
+                            </ng-template>
+                        </p-dialog> 
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center p-1">
+            <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" [ngModelOptions]="{standalone: true}" required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+        </div>
+    </div>
+
+    <div class="col-12 flex justify-content-center flex-wrap card-container">
+        <div class="flex align-items-center justify-content-center p-1">
+            <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-danger w-8rem p-2 m-2" routerLink="/"></button>
+            <button pButton pRipple type="button" label="Register" (click)="submitRegistrationForm(form)" [disabled]="enableSubmit(form)" class="p-button-raised p-button-success w-8rem p-2 m-2"></button>
+        </div>
+    </div>
+</div>
+</form>
