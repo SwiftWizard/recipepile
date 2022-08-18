@@ -22,11 +22,11 @@ export class RecipeService {
   }
 
   getTopRecipes(): Observable<DataWithMessages<RecipeSlim[], string[]>>{
-    return this.http.get<DataWithMessages<RecipeSlim[], string[]>>("${this.apiUrl}${this.topRecipesUrl}");
+    return this.http.get<DataWithMessages<RecipeSlim[], string[]>>(`${this.apiUrl}${this.topRecipesUrl}`);
   }
 
   newRecipe(recipe: RecipeThick){
-    let observableData = this.http.post<DataWithMessages<RecipeThick, string[]>>("${this.apiUrl}${this.newRecipeUrl}", recipe);
+    let observableData = this.http.post<DataWithMessages<RecipeThick, string[]>>(`${this.apiUrl}${this.newRecipeUrl}`, recipe);
     
     observableData.subscribe({
       next: dataWmeesages => this.handleNewRecipeSuccess(dataWmeesages),

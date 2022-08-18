@@ -23,7 +23,7 @@ export class CategoryService {
   constructor(private httpClient: HttpClient, private messageService: MessageService) { }
 
   getCategories(): Observable<DataWithMessages<Category[], string[]>> {
-    return this.httpClient.get("${this.apiUrl}${this.categoriesUrl}");
+    return this.httpClient.get(`${this.apiUrl}${this.categoriesUrl}`);
   }
 
   setCategories(categories: SelectItemGroup[]){

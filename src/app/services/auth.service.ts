@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   register(newUser: UserPost){
-    let observableData = this.httpClient.post<DataWithMessages<UserSlim, string[]>>("${this.apiUrl}${this.registerUrl}", newUser);
+    let observableData = this.httpClient.post<DataWithMessages<UserSlim, string[]>>(`${this.apiUrl}${this.registerUrl}`, newUser);
 
     observableData.subscribe({
       next: data => {this.handleSuccessfullRegistration(data)},
@@ -68,7 +68,7 @@ export class AuthService {
   }
   
   login(authenticationRequest: AuthenticationRequest){
-    let observableData =  this.httpClient.post<DataWithMessages<UserSlim, string[]>>("${this.apiUrl}${this.loginUrl}", authenticationRequest);
+    let observableData =  this.httpClient.post<DataWithMessages<UserSlim, string[]>>(`${this.apiUrl}${this.loginUrl}`, authenticationRequest);
     
     observableData.subscribe({
       next: data => {
