@@ -6,6 +6,5 @@ export const environment = {
   recaptcha: {
     siteKey: "6LfnqGshAAAAAPafAk_6gqmMVUx6uEE7ZCkvbm6K"
   },
-  apiUrl: "https://recipepile.azurewebsites.net"
-
+  API_URL: "https://recipepile.azurewebsites.net"
 };
