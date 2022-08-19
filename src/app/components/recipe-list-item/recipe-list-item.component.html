@@ -1,11 +1,11 @@
 <div class="grid surface-100 m-3">
-    <div class="col-12 md:col-4">
+    <div class="col-12 lg:col-4">
         <p-carousel [value]="recipe?.images!" class="align-items-center" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
             <ng-template let-image pTemplate="item">
                 <div>
-                    <div class="recipe-item-content surface-100 m-3 flex justify-content-center flex-wrap">
+                    <div class="recipe-item-content surface-100 flex justify-content-center flex-wrap">
                         <div class="flex flex-wrap align-items-center justify-content-center p-3">
-                            <div class="p-m-3 mt-3 align-items-center">
+                            <div class="align-items-center">
                                 <p-image [src]="image" alt="Ups.. failed to load image :(" width="100%" [preview]="false" class="recipe-image"></p-image>
                             </div>
                         </div>
@@ -14,19 +14,19 @@
             </ng-template>
         </p-carousel>
     </div>
-    <div class="col-10 md:col-7">
+    <div class="col-10 lg:col-7">
         <h5>{{recipe?.title}}</h5>
         <p>{{recipe?.description}}</p>
         <div class="grid mt-6">
-            <div class="col-6 md:col-9">
+            <div class="col-6 lg:col-8">
                 <button pButton pRipple type="button" label="View recipe" class="p-button-raised p-button-text mt-6"></button>
             </div>
-            <div class="col-6 md:col-3">
+            <div class="col-6 lg:col-3">
                 <p class="mt-6">Brought to you by {{recipe?.author?.nick}}</p>
             </div>
         </div>
     </div>
-    <div class="col-2 md:col-1 flex align-content-center flex-wrap">
+    <div class="col-2 lg:col-1 flex align-content-center flex-wrap">
         <div class="flex align-content-center justify-content-center">
             <button pButton pRipple type="button" icon="pi pi-heart" class="p-button-rounded p-button-danger"></button>
         </div>

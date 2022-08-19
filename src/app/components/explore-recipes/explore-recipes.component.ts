@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { DataWithMessages } from 'src/app/model/data-with-messages';
@@ -17,12 +17,29 @@ export class ExploreRecipesComponent implements OnInit {
 
   sortOptions: SelectItem[];
 
+  determinedSize: number = 0;
+
+  size: any;
+
   constructor(private recipeSerivce: RecipeService, private messageService: MessageService) {
-    this.getRecipePage();
+    this.onResize(undefined);
     this.sortOptions = [
       {label: 'Newest First', value: 'new'},
       {label: 'Most Popular First', value: 'popular'}
-  ];
+    ];
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    let width = window.innerWidth;
+    this.size = width;
+
+    if(width < 995){
+      this.determinedSize = width + 30;
+    }
+    else{
+      this.determinedSize = Math.round(width - (width / 1.4));
+    }
   }
 
   getRecipePage(categoryId?: number, page?: number, size?: number){
@@ -50,7 +67,7 @@ export class ExploreRecipesComponent implements OnInit {
   }
 
   onSortChange() {
-    if (this.sortKey.indexOf('!') === 0)
+    if (this.sortKey == "new")
         this.sort(-1);
     else
         this.sort(1);
@@ -70,5 +87,6 @@ export class ExploreRecipesComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    this.getRecipePage();
   }
 }
