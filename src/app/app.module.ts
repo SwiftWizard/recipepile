@@ -28,7 +28,9 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CheckboxModule }from 'primeng/checkbox';
 import { DialogModule } from 'primeng/dialog';
 import { ChipModule } from 'primeng/chip';
-import {PaginatorModule} from 'primeng/paginator';
+import { PaginatorModule } from 'primeng/paginator';
+import { ScrollerModule } from 'primeng/scroller';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 import { environment } from 'src/environments/environment';
 
@@ -92,7 +94,9 @@ import { RecipeListItemComponent } from './components/recipe-list-item/recipe-li
     RecaptchaFormsModule,
     RecaptchaModule,
     ChipModule,
-    PaginatorModule
+    PaginatorModule,
+    ScrollerModule,
+    VirtualScrollerModule
   ],
   providers: [
     AuthService,

@@ -1,5 +1,5 @@
 <div class="grid surface-100 m-3">
-    <div class="col-12 md:col-3">
+    <div class="col-12 md:col-4">
         <p-carousel [value]="recipe?.images!" class="align-items-center" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
             <ng-template let-image pTemplate="item">
                 <div>
@@ -14,13 +14,15 @@
             </ng-template>
         </p-carousel>
     </div>
-    <div class="col-10 md:col-8">
+    <div class="col-10 md:col-7">
         <h5>{{recipe?.title}}</h5>
         <p>{{recipe?.description}}</p>
-        <div class="grid pt-6">
-            <div class="col-6 md:col-9"></div>
+        <div class="grid mt-6">
+            <div class="col-6 md:col-9">
+                <button pButton pRipple type="button" label="View recipe" class="p-button-raised p-button-text mt-6"></button>
+            </div>
             <div class="col-6 md:col-3">
-                <p>Brought to you by {{recipe?.author?.nick}}</p>
+                <p class="mt-6">Brought to you by {{recipe?.author?.nick}}</p>
             </div>
         </div>
     </div>
