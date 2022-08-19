@@ -1,7 +1,7 @@
 <p-virtualScroller [value]="recipePage?.data?.content" scrollHeight="60vh" [itemSize]="determinedSize">
     <ng-template pTemplate="header">
         <div class="flex align-items-center justify-content-center gap-3 flex-wrap">
-            Recipes {{size}} {{determinedSize}}
+            Recipes
             <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange()" [style]="{'min-width':'10em'}"></p-dropdown>
         </div>
     </ng-template>
