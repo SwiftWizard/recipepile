@@ -1,5 +1,13 @@
-<div *ngFor="let recipe of (recipePageWithMessages$ | async)?.data.content">
-    <app-recipe-list-item [recipe]="recipe"></app-recipe-list-item>
-</div>
+<p-virtualScroller [value]="recipePage?.data?.content" scrollHeight="60vh" [rows]="recipePage?.data?.totalElements">
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center justify-content-center gap-3 flex-wrap">
+            Recipes
+            <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange()" [style]="{'min-width':'10em'}"></p-dropdown>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="item" let-recipe let-scrollOptions="options">
+        <app-recipe-list-item [recipe]="recipe"></app-recipe-list-item>
+    </ng-template>
+</p-virtualScroller>
 
 <p-paginator [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10,20,30]"></p-paginator>
