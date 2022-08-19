@@ -35,7 +35,7 @@ export class ExploreRecipesComponent implements OnInit {
     this.size = width;
 
     if(width < 995){
-      this.determinedSize = width + 30;
+      this.determinedSize = Math.round((width * 2)  - (width / 3));
     }
     else{
       this.determinedSize = Math.round(width - (width / 1.4));
