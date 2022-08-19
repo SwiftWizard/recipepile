@@ -1,11 +1,11 @@
 <div class="flex justify-content-center flex-wrap">
     <div class="grid surface-100 flex align-items-center justify-content-center my-class">
-        <div class="col-12 lg:col-4">
+        <div class="col-10 lg:col-4">
             <p-carousel [value]="recipe?.images!" class="align-items-center" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
                 <ng-template let-image pTemplate="item">
                     <div>
                         <div class="recipe-item-content surface-100 flex justify-content-center flex-wrap">
-                            <div class="flex flex-wrap align-items-center justify-content-center p-3">
+                            <div class="flex flex-wrap align-items-center justify-content-center">
                                 <div class="align-items-center">
                                     <p-image [src]="image" alt="Ups.. failed to load image :(" width="100%" [preview]="false" class="recipe-image"></p-image>
                                 </div>
