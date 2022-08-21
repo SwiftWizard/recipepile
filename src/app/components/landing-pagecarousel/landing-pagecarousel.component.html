@@ -1,11 +1,14 @@
 <div class="justify-content-center">
    <p-carousel [value]="((topRecipesWithMessages | async)?.data ?? [{}])" class="align-items-center" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
         <ng-template pTemplate="header">
-            <h3 class="pl-6">Top recipes</h3>
+            <div class="flex flex-wrap  justify-content-center">
+                <h3 class="pl-6">Top recipes, or...</h3>
+                <button pButton pRipple type="button" label="Explore more recipes" routerLink="/recipes/explore" class="p-button-raised p-3 mx-2 align-self-center"></button>
+            </div>
         </ng-template>
         <ng-template let-recipe pTemplate="item">
-            <div>
-                <div class="recipe-item-content surface-100 m-3 flex justify-content-center flex-wrap">
+            <div (click)="goToRecipePage(recipe.recipeId)" style="cursor: pointer">
+                <div class="recipe-item-content surface-100 m-3 flex justify-content-center flex-wrap border-round-lg">
                     <div class="flex flex-wrap align-items-center justify-content-center p-3">
                         <div class="p-m-3 mt-3 align-items-center">
                             <p-image [src]="recipe.images?.[0]" alt="Ups.. failed to load image :(" width="100%" [preview]="false" class="recipe-image"></p-image>

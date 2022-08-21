@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -15,11 +15,17 @@ export class RecipeService {
 
   private apiUrl = environment.backend.baseURL;
 
+  private getRecipeUrl: string = "/api/public/recipes/recipe/";
   private topRecipesUrl: string = "/api/public/recipes/top";
   private newRecipeUrl: string = "/api/manage/recipes/new";
   private allRecipesByCategory: string = "/api/public/recipes/all";
 
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
+  }
+
+  getRecipe(recipeId: number){
+    let params = new HttpParams().set("id", recipeId);
+    return this.http.get<DataWithMessages<RecipeThick, string[]>>(`${this.apiUrl}${this.getRecipeUrl}`, {params: params});
   }
 
   getTopRecipes(): Observable<DataWithMessages<RecipeSlim[], string[]>>{
@@ -35,7 +41,7 @@ export class RecipeService {
     
     observableData.subscribe({
       next: dataWmeesages => this.handleNewRecipeSuccess(dataWmeesages),
-      error: () => this.handleNewRecipeFailed()
+      error: error => this.handleNewRecipeFailed(error)
     });
   }
 
@@ -49,7 +55,8 @@ export class RecipeService {
     }));
   }
   
-  handleNewRecipeFailed(){
+  handleNewRecipeFailed(error: any){
+    console.log(error);
     this.messageService.add({
       severity: "warn",
       summary: "And unexpected error occured, failed to add new recipe"

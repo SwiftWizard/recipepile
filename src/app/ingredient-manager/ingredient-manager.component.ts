@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { Ingredient } from '../model/ingredient';
@@ -21,8 +21,7 @@ export class IngredientManagerComponent implements OnInit {
     this.ingredientForm = formBuilder.group({
       ingredientName: ["", [Validators.required]],
       ingredientAmount: [, [Validators.required]],
-      ingredientUoM: ["", [Validators.required]],
-      uomDescription: [""]
+      ingredientUoM: ["", [Validators.required]]
     });
   }
 
@@ -44,7 +43,7 @@ export class IngredientManagerComponent implements OnInit {
         {
           ingredientName: this.ingredientName?.value,
           amount: this.ingredientAmount?.value,
-          unitOfMesure: {unitName: this.ingredientUoM?.value}
+          unitOfMesure: this.ingredientUoM?.value
   
         }
       );
@@ -74,10 +73,6 @@ export class IngredientManagerComponent implements OnInit {
 
   get ingredientUoM(){
     return this.ingredientForm.get("ingredientUoM");
-  }
-
-  get uomDescription(){
-    return this.ingredientForm.get("uomDescription");
   }
 
 }

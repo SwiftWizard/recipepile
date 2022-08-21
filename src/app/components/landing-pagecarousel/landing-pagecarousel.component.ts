@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataWithMessages } from '../../model/data-with-messages';
 import { RecipeSlim } from '../../model/recipe-slim.model';
@@ -11,10 +12,12 @@ import { RecipeService } from '../../services/recipe.service';
 })
 export class LandingPagecarouselComponent implements OnInit {
 
+  private recipePageUrl: string = "/recipes/recipe/";
+
   responsiveOptions;
   topRecipesWithMessages: Observable<DataWithMessages<RecipeSlim[], string[]>>;
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, private router: Router) {
     this.topRecipesWithMessages =  this.recipeService.getTopRecipes();
     this.responsiveOptions = [
         {
@@ -38,4 +41,8 @@ export class LandingPagecarouselComponent implements OnInit {
 ngOnInit() {
     this.topRecipesWithMessages =  this.recipeService.getTopRecipes();
   }
+
+goToRecipePage(recipeId: number){
+  this.router.navigateByUrl(this.recipePageUrl + recipeId);
+}
 }

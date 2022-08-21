@@ -1,7 +1,6 @@
 import { NotExpr } from "@angular/compiler";
 import { Category } from "./category";
 import { Ingredient } from "./ingredient";
-import { Note } from "./note";
 import { UserSlimInfo } from "./user-slim-info";
 
 export interface RecipeThick {
@@ -11,10 +10,10 @@ export interface RecipeThick {
     timeNeeded: number;
     source?: string;
     url?: any;
-    note?: Note;
+    article?: string,
     servings?: number;
     author?: UserSlimInfo;
     images?: string[];
     categories?: Category[];
-    allStuffNeeded?: Ingredient[];
+    ingredients?: Ingredient[];
 }

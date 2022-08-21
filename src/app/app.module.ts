@@ -50,6 +50,7 @@ import { RecipeImageUploadComponent } from './components/recipe-image-upload/rec
 import { IngredientManagerComponent } from './ingredient-manager/ingredient-manager.component';
 import { ExploreRecipesComponent } from './components/explore-recipes/explore-recipes.component';
 import { RecipeListItemComponent } from './components/recipe-list-item/recipe-list-item.component';
+import { RecipePageComponent } from './components/recipe-page/recipe-page.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { RecipeListItemComponent } from './components/recipe-list-item/recipe-li
     RecipeImageUploadComponent,
     IngredientManagerComponent,
     ExploreRecipesComponent,
-    RecipeListItemComponent
+    RecipeListItemComponent,
+    RecipePageComponent
   ],
   imports: [
     HttpClientModule,

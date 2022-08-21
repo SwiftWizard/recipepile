@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injectable, Input, OnInit, Output } from '@angular/core';
+import { Component, Injectable, Input, OnInit, OnDestroy, Output } from '@angular/core';
+import { NavigationStart, Route, Router } from '@angular/router';
 import {MenuItem, PrimeIcons} from 'primeng/api';
+import { Observable, Subscription, tap } from 'rxjs';
 import { UserSlim } from '../../model/user-slim';
 import { AuthService } from '../../services/auth.service';
 
@@ -16,23 +18,23 @@ export class MenuComponent implements OnInit{
 
     public user: UserSlim | null = null;
 
+    subscription?: Subscription;
+
     items: MenuItem[] = [];
 
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService, private router: Router){
+    }
 
-    ngOnInit() {
-        this.authService.getUser().subscribe((u) =>{
-            this.user = u;
-            this.populateMenu();
+    ngOnInit(){
+        this.authService.getUser().subscribe({
+            next: user => {
+                this.user = user;
+                this.populateMenu();
+            }
         });
-
-        this.populateMenu();       
     }
 
     populateMenu(){
-
-        console.log(this.user);
-
         this.items = [
             {
                 label: 'Home',

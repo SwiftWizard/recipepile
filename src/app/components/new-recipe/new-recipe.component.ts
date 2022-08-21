@@ -35,8 +35,7 @@ export class NewRecipeComponent implements OnInit {
       source: [''],
       prepTime: [, [Validators.required, Validators.min(1), Validators.max(180)]],
       servings: [, [Validators.required, Validators.min(1), Validators.max(50)]],
-      noteTitle: ['', [Validators.required]],
-      noteText: ['', [Validators.required]]
+      article: ['', [Validators.required]]
     });
   }
 
@@ -53,8 +52,8 @@ export class NewRecipeComponent implements OnInit {
           source: this.source?.value,
           timeNeeded: this.prepTime?.value,
           servings: this.servings?.value,
-          note: {noteHeadline: this.noteTitle?.value, note: this.noteText?.value},
-          allStuffNeeded: this.ingredientManager?.getIngredients(),
+          article: this.article?.value,
+          ingredients: this.ingredientManager?.getIngredients(),
           images: this.recipeImgUpload?.uploadImagesAndReturnUrls(),
           recipeId: -1,
           author: undefined,
@@ -87,11 +86,7 @@ export class NewRecipeComponent implements OnInit {
     return this.newRecipeForm.get("servings");
   }
 
-  get noteTitle(){
-    return this.newRecipeForm.get("noteTitle");
-  }
-
-  get noteText(){
-    return this.newRecipeForm.get("noteText");
+  get article(){
+    return this.newRecipeForm.get("article");
   }
 }

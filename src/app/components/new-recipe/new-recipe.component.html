@@ -47,20 +47,8 @@
             </span>
         </div>
         <div class="pt-4">
-            <span class="p-float-label">
-                <input id="input-note-title" name="note-title" formControlName="noteTitle" pInputText class="my-field-width">
-                <div *ngIf="noteTitle?.invalid && noteTitle?.touched; then invalidNoteTitle else validNoteTitle"></div>
-                <ng-template #invalidNoteTitle>
-                    <label class="color-me-red" for="input-note-title">Article title is mandatory</label>
-                </ng-template>
-                <ng-template  #validNoteTitle>
-                    <label for="input-note-title">Article title</label>
-                </ng-template>
-            </span>
-        </div>
-        <div class="pt-4">
-            <label for="input-note-text" style="display: block;" class="pl-2 pb-1">Article content</label>
-            <p-editor id="input-note-text" formControlName="noteText">\
+            <label for="input-article" style="display: block;" class="pl-2 pb-1">Article</label>
+            <p-editor id="input-article" formControlName="article">
                 <p-header>
                     <span class="ql-formats">
                             <select class="ql-header" tabindex="-1">

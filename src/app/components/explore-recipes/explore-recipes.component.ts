@@ -34,11 +34,11 @@ export class ExploreRecipesComponent implements OnInit {
     let width = window.innerWidth;
     this.size = width;
 
-    if(width < 500){
-      this.determinedSize = Math.round((width * 3)  - (width  / 0.7));
+    if(width < 550){
+      this.determinedSize = Math.round(width * 2.2);
     }
     else if(width < 995){
-      this.determinedSize = Math.round((width * 2)  - (width / 1.4));
+      this.determinedSize = Math.round((width * 2)  - (width / 1.8));
     }
     else{
       this.determinedSize = Math.round(width - (width / 1.4));

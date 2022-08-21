@@ -1,6 +1,6 @@
 <div class="flex justify-content-center flex-wrap">
     <div class="grid surface-100 flex align-items-center justify-content-center my-class">
-        <div class="col-10 lg:col-4">
+        <div class="col-12 lg:col-4">
             <p-carousel [value]="recipe?.images!" class="align-items-center" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
                 <ng-template let-image pTemplate="item">
                     <div>
@@ -15,15 +15,22 @@
                 </ng-template>
             </p-carousel>
         </div>
-        <div class="col-10 lg:col-7">
+        <div class="col-12 lg:col-7">
             <h5>{{recipe?.title}}</h5>
             <p>{{recipe?.description}}</p>
             <div class="grid mt-6">
-                <div class="col-6 lg:col-8">
-                    <button pButton pRipple type="button" label="View recipe" class="p-button-raised p-button-text mt-6"></button>
+                <div class="col-12 md:col-5 flex flex-wrap align-items-center justify-content-center">
+                    <button pButton pRipple type="button" (click)="goToRecipePage(recipe?.recipeId!)" label="View recipe" class="p-button-raised mt-6"></button>
                 </div>
-                <div class="col-6 lg:col-3">
-                    <p class="mt-6">Brought to you by {{recipe?.author?.nick}}</p>
+                <div class="col-12 md:col-7">
+                    <div class="flex flex-wrap align-items-center justify-content-center mt-6 grid">
+                        <div class="col-12 md:col-6 flex align-items-center justify-content-center">
+                            <h4 class="mx-2">Author:</h4>
+                        </div>
+                        <div class="col-12 md:col-6 flex align-items-center justify-content-center">
+                            <button pButton pRipple type="button" label="{{recipe?.author?.nick}}" class="p-button-raised mx-2"></button>
+                        </div>    
+                    </div>
                 </div>
             </div>
         </div>

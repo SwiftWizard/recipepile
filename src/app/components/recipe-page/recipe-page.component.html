@@ -1,0 +1,47 @@
+
+<div class="grid">
+    <div class="col-12 md:col-7 grid">
+        <div class="col-12">
+            <h1>{{recipe?.title}}</h1>
+            <div class="flex flex-wrap align-items-center">
+                <h4>Categories:</h4>
+                <div *ngFor="let cat of recipe?.categories">
+                    <p-chip label="{{cat.categoryName}}" styleClass="mx-1"></p-chip>
+                </div>
+            </div>
+            <p>{{recipe?.description}}</p>
+            <p>Done in <strong>{{recipe?.timeNeeded}}</strong> minutes, <strong>{{recipe?.servings}}</strong> servings</p>
+            <div class="flex flex-wrap align-items-center">
+                <h4>Ingredients:</h4>
+                <div *ngFor="let ingredient of recipe?.ingredients">
+                    <p-chip label="{{ingredient.ingredientName}} {{ingredient.amount}} {{ingredient.unitOfMesure}}" styleClass="mx-1"></p-chip>
+                </div>
+            </div>
+            <div class="flex flex-wrap align-items-center">
+                <h4>Author:</h4>
+                <button pButton pRipple type="button" label="{{recipe?.author?.nick}}" class="p-button-raised mx-2"></button>
+                <p></p>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-12 md:col-5 flex flex-wrap align-content-center justify-content-center">
+        <p-carousel [value]="recipe?.images!" class="align-items-center" styleClass="custom-carousel" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
+            <ng-template let-image pTemplate="item">
+                <div>
+                    <div class="recipe-item-content surface-100 flex justify-content-center flex-wrap">
+                        <div class="flex flex-wrap align-items-center justify-content-center">
+                            <div class="align-items-center">
+                                <p-image [src]="image" alt="Ups.. failed to load image :(" width="100%" [preview]="false" class="recipe-image"></p-image>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+        <br>
+        <button pButton pRipple type="button" icon="pi pi-heart" label="Add to favorites" class="p-button-raised p-button-danger"></button>
+    </div>
+    <div class="col-12" [innerHtml]="recipe?.article" >
+    </div>
+</div>
