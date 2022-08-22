@@ -11,7 +11,7 @@ export const environment = {
     siteKey: "6LfnqGshAAAAAPafAk_6gqmMVUx6uEE7ZCkvbm6K"
   },
   backend: {
-    baseURL:"http://localhost:8080"
+    baseURL:"https://recipepile.azurewebsites.net"
   }
 };
 
