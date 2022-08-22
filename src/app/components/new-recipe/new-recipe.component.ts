@@ -57,7 +57,7 @@ export class NewRecipeComponent implements OnInit {
           images: this.recipeImgUpload?.uploadImagesAndReturnUrls(),
           recipeId: -1,
           author: undefined,
-          url: ""
+          url: "" 
         });
     }
   }

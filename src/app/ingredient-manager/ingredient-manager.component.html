@@ -48,7 +48,7 @@
     <br>
     <div *ngFor="let ingredient of ingredients$">
         <ul>
-            <p-chip label="{{(ingredient | async)?.ingredientName}} {{(ingredient | async)?.amount}} {{(ingredient | async)?.unitOfMesure}}" [removable]="true" (click)="removeIngredient(ingredient)"></p-chip>
+            <p-chip label="{{(ingredient | async)?.ingredientName}} {{(ingredient | async)?.amount}} {{(ingredient | async)?.unitOfMeasure}}" [removable]="true" (click)="removeIngredient(ingredient)"></p-chip>
         </ul>
     </div>
 </form>

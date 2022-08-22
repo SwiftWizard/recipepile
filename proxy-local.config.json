@@ -1,8 +1,8 @@
 {
     "/api":{
-        "target": "https://recipepile.azurewebsites.net",
+        "target": "http://localhost:8080",
         "pathRewrite": { "^/api": "" },
-        "secure": "true",
+        "secure": "false",
         "changeOrigin": true,
         "logLevel": "debug"
     }

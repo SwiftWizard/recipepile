@@ -43,7 +43,7 @@ export class RecipeImageUploadComponent implements OnInit {
   uploadImagesAndReturnUrls(): string[]{
     let result: string[] = [];
     this.croppedImages.forEach(img => {
-      let blobName = this.title + uuidv4();
+      let blobName = this.title.replace(/\s/g, "").toLowerCase() + uuidv4();
       let url = environment.storageUri + environment.storageResourceName + "/" + blobName;
       result.push(url);
       img.subscribe({

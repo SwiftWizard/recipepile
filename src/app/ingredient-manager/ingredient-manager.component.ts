@@ -33,6 +33,8 @@ export class IngredientManagerComponent implements OnInit {
       })
     });
 
+    result.forEach(val => console.log(val));
+
     return result;
   }
 
@@ -43,7 +45,7 @@ export class IngredientManagerComponent implements OnInit {
         {
           ingredientName: this.ingredientName?.value,
           amount: this.ingredientAmount?.value,
-          unitOfMesure: this.ingredientUoM?.value
+          unitOfMeasure: this.ingredientUoM?.value
   
         }
       );
