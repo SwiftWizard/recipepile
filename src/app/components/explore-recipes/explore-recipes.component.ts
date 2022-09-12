@@ -18,7 +18,7 @@ export class ExploreRecipesComponent implements OnInit {
   sortOptions: SelectItem[];
 
   determinedSize: number = 0;
-
+  
   size: any;
 
   constructor(private recipeSerivce: RecipeService, private messageService: MessageService) {
